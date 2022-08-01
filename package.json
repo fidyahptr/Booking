@@ -1,6 +1,9 @@
 {
   "name": "isomorphic",
   "version": "2.9.5",
+  "engines": {
+    "node": "10.15.3"
+  },
   "private": true,
   "dependencies": {
     "antd": "^3.11.6",
