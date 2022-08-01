@@ -1,28 +1,11 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { connect } from 'react-redux';
 import App from './containers/App/App';
 import asyncComponent from './helpers/AsyncFunc';
 import Auth0 from './helpers/auth0';
 
-const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isLoggedIn ? (
-        <Component {...props} />
-      ) : (
-          <Redirect
-            to={{
-              pathname: '/signin',
-              state: { from: props.location },
-            }}
-          />
-        )
-    }
-  />
-);
 const PublicRoutes = ({ history, isLoggedIn }) => {
   return (
     <ConnectedRouter history={history}>
@@ -30,10 +13,7 @@ const PublicRoutes = ({ history, isLoggedIn }) => {
         <Route
           exact
           path={'/'}
-          // component={asyncComponent(() => import('./containers/Page/dashboard'))}
-          // path="/dashboard"
           component={App}
-          isLoggedIn={isLoggedIn}
         />
         <Route
           exact
@@ -76,10 +56,9 @@ const PublicRoutes = ({ history, isLoggedIn }) => {
             Auth0.handleAuthentication(props);
           }}
         />
-        <RestrictedRoute
+        <Route
           path="/dashboard"
           component={App}
-          isLoggedIn={isLoggedIn}
         />
       </div>
     </ConnectedRouter>
