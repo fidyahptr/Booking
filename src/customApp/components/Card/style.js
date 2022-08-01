@@ -9,11 +9,11 @@ const VCardWidgetWrapper = styled.div`
   align-items: center;
   background-color: #ffffff;
   overflow: hidden;
-  padding: 50px 30px 30px;
+  padding: 40px 20px 20px;
 
   .isoVCardImage {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: -webkit-inline-flex;
     display: -ms-inline-flex;
     display: inline-flex;
